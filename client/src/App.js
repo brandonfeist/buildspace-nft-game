@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import SelectCharacter from './Components/SelectCharacter';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
 
@@ -9,10 +10,8 @@ const HEY_SKYLARK_TWITTER_HANDLE = "heyskylark"
 const HEY_SKYLARK_TWITTER_LINK = `https://twitter.com/${HEY_SKYLARK_TWITTER_HANDLE}`;
 
 const App = () => {
-  /*
-   * Just a state variable we use to store our user's public wallet. Don't forget to import useState.
-   */
   const [currentAccount, setCurrentAccount] = useState(null);
+  const [characterNFT, setCharacterNFT] = useState(null);
 
   /*
    * Since this method will take some time, make sure to declare it as async
@@ -77,6 +76,34 @@ const App = () => {
     }
   };
 
+  // Render Methods
+const renderContent = () => {
+    /*
+    * Scenario #1
+    */
+    if (!currentAccount) {
+      return (
+        <div className="connect-wallet-container">
+          <img
+            src="https://64.media.tumblr.com/tumblr_mbia5vdmRd1r1mkubo1_500.gifv"
+            alt="Monty Python Gif"
+          />
+          <button
+            className="cta-button connect-wallet-button"
+            onClick={connectWalletAction}
+          >
+            Connect Wallet To Get Started
+          </button>
+        </div>
+      );
+      /*
+      * Scenario #2
+      */
+    } else if (currentAccount && !characterNFT) {
+      return <SelectCharacter setCharacterNFT={setCharacterNFT} />;
+    }
+  };
+
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
@@ -92,16 +119,7 @@ const App = () => {
               src="https://64.media.tumblr.com/b17ea7e368f3920b17f4466f36bbce0f/9d6219a6d0a5c588-bd/s500x750/10bcbada671d5bbb6266f5b3887e1ff00da07424.gifv"
               alt="Monsters Gif"
             />
-            {/*
-            * Button that we will use to trigger wallet connect
-            * Don't forget to add the onClick event to call your method!
-            */}
-            <button
-              className="cta-button connect-wallet-button"
-              onClick={connectWalletAction}
-            >
-              Connect Wallet To Get Started
-            </button>
+            {renderContent()}
           </div>
         </div>
         <div className="footer-container">
