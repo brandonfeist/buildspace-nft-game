@@ -1,16 +1,16 @@
 const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory('MyEpicGame');
   const gameContract = await gameContractFactory.deploy(
-    ["Kass", "Edward", "Blu"],          // Names
-    ["https://i.imgur.com/Cup83aL.jpeg", // Images
-    "https://i.imgur.com/GGDIjZW.jpeg", 
-    "https://i.imgur.com/RWivlOy.jpeg"],
-    [100, 300, 200],                    // HP values
-    [100, 25, 50],                       // Attack damage values
+    ["Kass", "Edward", "Blu"],
+    ["QmZ9fX7F4D4ezeqj6ru4mDT2LaxkgqsEwviYmmZS7u6zti",
+    "QmciuDcbCZCu8ePo8TsiRQsbuHSz3aFqVJsc1RwakgMUMr", 
+    "QmTZ7EbXHiA7sDGKQCXi2hE7Dr2urk3NX8rLHJEr57t7Km"],
+    [100, 300, 200],
+    [100, 25, 50],
     "Roy",
-    "https://i.imgur.com/IlZiWbP.jpeg",
-    10000, // Boss hp
-    50 // Boss attack damage
+    "QmUQfkotjAW8uN7VAqB9auaVXP5HnBKrx1ZjDfLFFZuAHq",
+    10000,
+    50
   );
   await gameContract.deployed();
   console.log("Contract deployed to:", gameContract.address);
