@@ -22,10 +22,7 @@ const SelectCharacter = ({ setCharacterNFT }) => {
         myEpicGame.abi,
         signer
       );
-  
-      /*
-       * This is the big difference. Set our gameContract in state.
-       */
+
       setGameContract(gameContract);
     } else {
       console.log('Ethereum object not found');

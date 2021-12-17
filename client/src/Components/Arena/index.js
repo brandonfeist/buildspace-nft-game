@@ -35,18 +35,6 @@ const Arena = ({ characterNFT, setCharacterNFT }) => {
 
   useEffect(() => {
     const fetchBoss = async () => {
-      const bossTxn = await gameContract.getBigBoss();
-      console.log('Boss:', bossTxn);
-      setBoss(transformCharacterData(bossTxn));
-    };
-  
-    if (gameContract) {
-      fetchBoss();
-    }
-  }, [gameContract]);
-
-  useEffect(() => {
-    const fetchBoss = async () => {
         const bossTxn = await gameContract.getBigBoss();
         console.log('Boss:', bossTxn);
         setBoss(transformCharacterData(bossTxn));
@@ -167,10 +155,6 @@ const Arena = ({ characterNFT, setCharacterNFT }) => {
               </div>
             </div>
           </div>
-          {/* <div className="active-players">
-            <h2>Active Players</h2>
-            <div className="players-list">{renderActivePlayersList()}</div>
-          </div> */}
         </div>
       )}
     </div>

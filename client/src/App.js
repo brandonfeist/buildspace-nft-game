@@ -20,10 +20,6 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    checkIfWalletIsConnected();
-  }, []);
-
-  useEffect(() => {
     setIsLoading(true);
     checkIfWalletIsConnected();
   }, []);
@@ -55,10 +51,6 @@ const App = () => {
     }
   }, [currentAccount]);
 
-
-  /*
-   * Since this method will take some time, make sure to declare it as async
-   */
   const checkIfWalletIsConnected = async () => {
     try {
       const { ethereum } = window;
@@ -87,9 +79,6 @@ const App = () => {
     setIsLoading(false);
   };
 
-  /*
-   * Implement your connectWallet method here
-   */
   const connectWalletAction = async () => {
     try {
       const { ethereum } = window;
@@ -99,16 +88,10 @@ const App = () => {
         return;
       }
 
-      /*
-       * Fancy method to request access to account.
-       */
       const accounts = await ethereum.request({
         method: 'eth_requestAccounts',
       });
 
-      /*
-       * Boom! This should print out public address once we authorize Metamask.
-       */
       console.log('Connected', accounts[0]);
       setCurrentAccount(accounts[0]);
     } catch (error) {
@@ -116,7 +99,6 @@ const App = () => {
     }
   };
 
-  // Render Methods
   const renderContent = () => {
     if (isLoading) {
       return <LoadingIndicator />;
